@@ -17,19 +17,24 @@ app.post("/addBooks",(req,res)=>{
             res.send("Books saved");
         }
     });
-})
+});
 
 //Get all books
-// app.get("/Boooks",(req,res)=>
-// {
-//     fs.readFile("books.json",(req,res)=>
-//     {
-//         if(err)
-//         {
-
-//         }
-//     })
-// })
+app.get("/Books",(req,res)=>
+{
+    fs.readFile("books.json",(err,data)=>
+    {
+        if(err)
+        {
+            console.log("Error reading file: " + err);
+            res.status(500).send("Error reading file: " + err);
+        }
+        else{
+            console.log("File read successfuly");
+            res.send(data);
+        }
+    });
+});
 const port=8000;
 app.listen(port,()=>
 {
