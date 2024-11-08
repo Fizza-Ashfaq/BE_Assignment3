@@ -19,6 +19,23 @@ app.post("/addBooks",(req,res)=>{
     });
 });
 
+// Append books
+app.put("/appendBooks",(req,res)=>
+{
+    const book=req.body;
+    fs.writeFile("books.json",JSON.stringify(book),{flag:"a"},(err)=>
+    {
+        if(err)
+        {
+            console.log("Error updating file: " + err);
+            res.status(500).send("Error updating file: " + err);
+        }
+        else{
+            console.log("File updated successfuly");
+            res.status(200).send("File updated successfuly"+JSON.stringify(book));
+        }
+    })
+})
 //Get all books
 app.get("/Books",(req,res)=>
 {
