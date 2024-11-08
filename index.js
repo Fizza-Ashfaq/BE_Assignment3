@@ -35,6 +35,23 @@ app.get("/Books",(req,res)=>
         }
     });
 });
+
+//Update method
+app.put("/updateBooks",(req,res)=>
+{
+    fs.truncate("books.json",8,(err)=>
+    {
+        if(err)
+        {
+            console.log("Error truncating file: " + err);
+            res.status(500).send("Error truncating file: " + err);
+        }
+        else{
+            console.log("File truncated successfuly");
+            res.status(200).send("File truncated successfuly");
+        }
+    })
+})
 const port=8000;
 app.listen(port,()=>
 {
