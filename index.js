@@ -52,6 +52,23 @@ app.put("/updateBooks",(req,res)=>
         }
     })
 })
+
+//Delete method
+app.delete("/deleteBooks",(req,res)=>
+{
+    fs.unlink("books.json",(err)=>
+    {
+        if(err)
+        {
+            console.log("Error deleting file: " + err);
+            res.status(500).send("Error deleting file: " + err);
+        }
+        else{
+            console.log("File deleted successfuly");
+            res.status(200).send("File deleted successfuly");
+        }
+    });
+});
 const port=8000;
 app.listen(port,()=>
 {
